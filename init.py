@@ -1,25 +1,14 @@
 import os
 
-folders = [
-    "100_doors",
+tasks = [
     "ABC_Problem",
-    "Ackermann_function",
     "Arithmetic-geometric_mean",
-    "Binary_digits",
-    "Binary_search",
     "Caesar_cipher",
-    "Factorial",
     "Factors_of_an_integer",
-    "Fibonacci_sequence",
     "Greatest_common_divisor",
-    "Greatest_element_of_a_list",
     "Guess_the_number",
-    "Hailstone_sequence",
-    "Least_common_multiple",
-    "N-queens_problem",
     "Remove_duplicate_elements",
     "Sieve_of_Eratosthenes",
-    "Sorting_algorithms--Merge_sort",
     "Sorting_algorithms--Quicksort",
     "Towers_of_Hanoi"
 ]
@@ -30,8 +19,7 @@ languages = [
     "Java",
     "JavaScript",
     "OCaml",
-    "Python",
-    "Swift"
+    "Python"
 ]
 
 suffix = {
@@ -110,7 +98,7 @@ make_folder = "./makes_languages"
 
 
 def main():
-    for folder in folders:
+    for folder in tasks:
         print("Task:", folder)
         if not os.path.exists(folder):
             os.makedirs(folder)
