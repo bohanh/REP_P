@@ -13,11 +13,11 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=ABCProblem.py
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=ABCProblem
 endif
 
 compile:

@@ -13,31 +13,31 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=CaesarCipher.go
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=CaesarCipher
 endif
 
 compile:
-	
+	$(GO) build -o $(FILE)_run $(FILE)
 
 measure:
-	sudo ../../RAPL/main '$(PYTHON) -OO $(TASK).py' Python $(TASK)
+	sudo ../../RAPL/main './$(FILE)_run' Go $(TASK)
 
 run:
-	$(PYTHON) -OO $(TASK).py
+	./$(FILE)_run
 
 mem:
-	/usr/bin/time -p $(PYTHON) -OO $(TASK).py
+	/usr/bin/time -p ./$(FILE)_run
 
 valgrind:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes ./$(FILE)_run
 
 valmem:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes ./$(FILE)_run
 
 clean:
-	
+	rm -rf *.go_run
 

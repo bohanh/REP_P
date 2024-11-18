@@ -13,18 +13,20 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.go
+	FILE=FibonacciSequence.ocaml
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=FibonacciSequence
 endif
 
 compile:
-	$(GO) build -o $(FILE)_run $(FILE)
+	cp $(FILE) $(TASK).ml
+	ocamlopt -noassert -unsafe -nodynlink -inline 100 unix.cmxa $(TASK).ml -o $(FILE)_run
+	rm $(TASK).ml
 
 measure:
-	sudo ../../RAPL/main './$(FILE)_run' Go $(TASK)
+	sudo ../../RAPL/main './$(FILE)_run' OCaml $(TASK)
 
 run:
 	./$(FILE)_run
@@ -39,5 +41,5 @@ valmem:
 	valgrind --tool=massif --stacks=yes ./$(FILE)_run
 
 clean:
-	rm -rf *.go_run
+	rm -rf *.ocaml_run *.cmi *.cmx *.o
 

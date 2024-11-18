@@ -13,11 +13,11 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=GreatestCommonDivisor.py
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=GreatestCommonDivisor
 endif
 
 compile:

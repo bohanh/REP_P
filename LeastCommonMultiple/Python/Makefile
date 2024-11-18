@@ -13,11 +13,11 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=LeastCommonMultiple.py
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=LeastCommonMultiple
 endif
 
 compile:

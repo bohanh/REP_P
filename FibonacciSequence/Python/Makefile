@@ -13,11 +13,11 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=FibonacciSequence.py
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=FibonacciSequence
 endif
 
 compile:

@@ -13,31 +13,31 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=ABCProblem.java
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=ABCProblem
 endif
 
 compile:
-	
+	/usr/bin/javac -d . $(TASK).java
 
 measure:
-	sudo ../../RAPL/main '$(PYTHON) -OO $(TASK).py' Python $(TASK)
+	sudo ../../RAPL/main '/usr/bin/javac $(TASK)' Java $(TASK)
 
 run:
-	$(PYTHON) -OO $(TASK).py
+	/usr/bin/javac $(TASK)
 
 mem:
-	/usr/bin/time -p $(PYTHON) -OO $(TASK).py
+	/usr/bin/time -p /usr/bin/javac $(TASK)
 
 valgrind:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes /usr/bin/javac $(TASK)
 
 valmem:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes /usr/bin/javac $(TASK)
 
 clean:
-	
+	rm *.class
 

@@ -13,11 +13,11 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=RemoveDuplicateElements.py
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=RemoveDuplicateElements
 endif
 
 compile:

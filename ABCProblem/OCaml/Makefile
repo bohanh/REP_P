@@ -13,31 +13,33 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=ABCProblem.ocaml
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=ABCProblem
 endif
 
 compile:
-	
+	cp $(FILE) $(TASK).ml
+	ocamlopt -noassert -unsafe -nodynlink -inline 100 unix.cmxa $(TASK).ml -o $(FILE)_run
+	rm $(TASK).ml
 
 measure:
-	sudo ../../RAPL/main '$(PYTHON) -OO $(TASK).py' Python $(TASK)
+	sudo ../../RAPL/main './$(FILE)_run' OCaml $(TASK)
 
 run:
-	$(PYTHON) -OO $(TASK).py
+	./$(FILE)_run
 
 mem:
-	/usr/bin/time -p $(PYTHON) -OO $(TASK).py
+	/usr/bin/time -p ./$(FILE)_run
 
 valgrind:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes ./$(FILE)_run
 
 valmem:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes ./$(FILE)_run
 
 clean:
-	
+	rm -rf *.ocaml_run *.cmi *.cmx *.o
 

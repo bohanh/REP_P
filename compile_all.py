@@ -8,15 +8,13 @@ path = '.'
 action = 'compile'
 tasks = [
     "ABC_Problem",
-    "Arithmetic-geometric_mean",
     "Caesar_cipher",
-    "Factors_of_an_integer",
+    "Fibonacci_sequence",
     "Greatest_common_divisor",
     "Guess_the_number",
+    "Least_common_multiple",
     "Remove_duplicate_elements",
-    "Sieve_of_Eratosthenes",
-    "Sorting_algorithms--Quicksort",
-    "Towers_of_Hanoi"
+    "Sieve_of_Eratosthenes"
 ]
 
 

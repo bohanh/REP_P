@@ -13,18 +13,18 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.go
+	FILE=RemoveDuplicateElements.cpp
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=RemoveDuplicateElements
 endif
 
 compile:
-	$(GO) build -o $(FILE)_run $(FILE)
+	/usr/bin/g++ -c -pipe -O3 -fomit-frame-pointer -march=native -std=c++14 -I/usr/include/apr-1.0 $(FILE) -o $(FILE).o &&  /usr/bin/g++ $(FILE).o -o $(FILE)_run -lapr-1
 
 measure:
-	sudo ../../RAPL/main './$(FILE)_run' Go $(TASK)
+	sudo ../../RAPL/main './$(FILE)_run' C++ $(TASK)
 
 run:
 	./$(FILE)_run
@@ -39,5 +39,5 @@ valmem:
 	valgrind --tool=massif --stacks=yes ./$(FILE)_run
 
 clean:
-	rm -rf *.go_run
+	rm -rf *.o *_run
 

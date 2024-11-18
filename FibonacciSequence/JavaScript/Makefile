@@ -13,30 +13,30 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=FibonacciSequence.js
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=FibonacciSequence
 endif
 
 compile:
 	
 
 measure:
-	sudo ../../RAPL/main '$(PYTHON) -OO $(TASK).py' Python $(TASK)
+	sudo ../../RAPL/main '$(NODE) $(TASK).js' JavaScript $(TASK)
 
 run:
-	$(PYTHON) -OO $(TASK).py
+	$(NODE) $(TASK)
 
 mem:
-	/usr/bin/time -p $(PYTHON) -OO $(TASK).py
+	/usr/bin/time -p $(NODE) $(TASK)
 
 valgrind:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes $(NODE) $(TASK)
 
 valmem:
-	valgrind --tool=massif --stacks=yes $(PYTHON) -OO $(TASK).py
+	valgrind --tool=massif --stacks=yes $(NODE) $(TASK)
 
 clean:
 	

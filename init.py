@@ -2,15 +2,15 @@ import os
 
 tasks = [
     "ABC_Problem",
-    "Arithmetic-geometric_mean",
     "Caesar_cipher",
+    "Factorial",
     "Factors_of_an_integer",
+    "Fibonacci_sequence",
     "Greatest_common_divisor",
     "Guess_the_number",
+    "Least_common_multiple",
     "Remove_duplicate_elements",
-    "Sieve_of_Eratosthenes",
-    "Sorting_algorithms--Quicksort",
-    "Towers_of_Hanoi"
+    "Sieve_of_Eratosthenes"
 ]
 
 languages = [
@@ -29,23 +29,21 @@ suffix = {
     "JavaScript": "js",
     "OCaml": "ocaml",
     "Python": "py",
-    "Swift": "swift"
 }
 
 source = {
     "time": "/usr/bin/time -p",
     "gcc": "/usr/bin/g++",
-    "go": "/opt/homebrew/bin/go",
+    "go": "$(GO)",
     "java": "/usr/bin/javac",
-    "javascript": "/opt/homebrew/bin/node",
-    "python": "/opt/anaconda3/bin/python",
-    "swift": "/usr/bin/swiftc"
+    "javascript": "$(NODE)",
+    "python": "$(PYTHON)"
 }
 
 makefiles_const_prefix = {
     "mem": f"{source['time']} ",
     "valgrind": "valgrind --tool=massif --stacks=yes ",
-    "valmem": "valgrind --tool=massif --stacks=yes  ",
+    "valmem": "valgrind --tool=massif --stacks=yes ",
 }
 makefiles = {
     "C++": {
@@ -86,37 +84,40 @@ makefiles = {
         "run": f"{source['python']} -OO $(TASK).py",
         "clean": ""
     },
-    "Swift": {
-        "compile": f"{source['swift']} $(FILE) -Ounchecked -whole-module-optimization -I Include/swift/apr -o $(FILE)_run",
-        "measure": "sudo ../../RAPL/main './$(FILE)_run' Swift $(TASK)",
-        "run": "./$(FILE)_run",
-        "clean": "rm -rf *_run"
-    },
 }
 
 make_folder = "./makes_languages"
 
 
+def formating(s):
+    ss = s.split("_")
+    for i in range(len(ss)):
+        ss[i] = ss[i][0].capitalize() + ss[i][1:]
+    return ''.join(ss)
+
+
 def main():
-    for folder in tasks:
-        print("Task:", folder)
-        if not os.path.exists(folder):
-            os.makedirs(folder)
+    for task in tasks:
+        print("Task:", task)
+        task_mod = formating(task)
+        if not os.path.exists(task_mod):
+            os.makedirs(task_mod)
         for language in languages:
-            if not os.path.exists(os.path.join(folder, language)):
-                os.makedirs(os.path.join(folder, language))
-            makefile = os.path.join(folder, language, "Makefile")
-            code = os.path.join(folder, language, f"{folder}.{suffix[language]}")
+            if not os.path.exists(os.path.join(task_mod, language)):
+                os.makedirs(os.path.join(task_mod, language))
+            makefile = os.path.join(task_mod, language, "Makefile")
+            code = os.path.join(task_mod, language, f"{task_mod}.{suffix[language]}")
             with open(makefile, "w") as file:
-                file.write(f"ifndef FILE\n\tFILE={folder}.{suffix[language]}\nendif\n\n"
-                           f"ifndef TASK\n\tTASK={folder}\nendif\n\n"
-                           f"compile:\n\t{makefiles[language]['compile']}\n\n"
-                           f"measure:\n\t{makefiles[language]['measure']}\n\n"
-                           f"run:\n\t{makefiles[language]['run']}\n\n"
-                           f"mem:\n\t{makefiles_const_prefix['mem']}{makefiles[language]['run']}\n\n"
-                           f"valgrind:\n\t{makefiles_const_prefix['valgrind']}{makefiles[language]['run']}\n\n"
-                           f"valmem:\n\t{makefiles_const_prefix['valmem']}{makefiles[language]['run']}\n\n"
-                           f"clean:\n\t{makefiles[language]['clean']}\n\n")
+                file.write(f"ifeq ($(shell uname), Linux)\n\tGO = /usr/local/go/bin/go\n\tNODE = /home/kirito/.nvm/versions/node/v18.16.0/bin/node\n\tPYTHON = /usr/bin/python3\nelse ifeq ($(shell uname), Darwin)\n\tGO = /opt/homebrew/bin/go\n\tNODE = /opt/homebrew/bin/node\n\tPYTHON = /opt/anaconda3/bin/python\nelse\n\tGO = \n\tNODE = \n\tPYTHON = \nendif\n\n")
+                file.write(f"ifndef FILE\n\tFILE={task_mod}.{suffix[language]}\nendif\n\n")
+                file.write(f"ifndef TASK\n\tTASK={task_mod}\nendif\n\n")
+                file.write(f"compile:\n\t{makefiles[language]['compile']}\n\n")
+                file.write(f"measure:\n\t{makefiles[language]['measure']}\n\n")
+                file.write(f"run:\n\t{makefiles[language]['run']}\n\n")
+                file.write(f"mem:\n\t{makefiles_const_prefix['mem']}{makefiles[language]['run']}\n\n")
+                file.write(f"valgrind:\n\t{makefiles_const_prefix['valgrind']}{makefiles[language]['run']}\n\n")
+                file.write(f"valmem:\n\t{makefiles_const_prefix['valmem']}{makefiles[language]['run']}\n\n")
+                file.write(f"clean:\n\t{makefiles[language]['clean']}\n\n")
             with open(code, "w"):
                 pass
 

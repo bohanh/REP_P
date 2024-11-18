@@ -13,11 +13,11 @@ else
 endif
 
 ifndef FILE
-	FILE=Factorial.py
+	FILE=FactorsOfAnInteger.py
 endif
 
 ifndef TASK
-	TASK=Factorial
+	TASK=FactorsOfAnInteger
 endif
 
 compile:
