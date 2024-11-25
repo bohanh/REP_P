@@ -1,0 +1,20 @@
+let rec range = function 0 -> [] | n -> range(n-1) @ [n]
+
+let factors n =
+  List.filter (fun v -> (n mod v) = 0) (range n)
+
+let print_int_list lst =
+  print_string "[";                          (* Print the opening bracket *)
+  let rec print_elements = function
+    | [] -> print_string "]"                  (* When the list is empty, print the closing bracket *)
+    | [x] -> print_int x; print_string "]"    (* If there's one element left, print it followed by the closing bracket *)
+    | x :: xs -> print_int x;                 (* Print the current element *)
+               print_string ", ";             (* Print a comma separator *)
+               print_elements xs             (* Recur for the rest of the list *)
+  in
+  print_elements lst;;
+
+let () =
+  let number = 1234 in
+  let result = factors number in
+  Printf.printf "The factors of %d is: [%s]\n" number (String.concat ", " (List.map string_of_int result));
