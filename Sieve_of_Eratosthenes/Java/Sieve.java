@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class SieveOfEratosthenes{
+public class Sieve{
        public static LinkedList<Integer> sieve(int n){
                if(n < 2) return new LinkedList<Integer>();
                LinkedList<Integer> primes = new LinkedList<Integer>();

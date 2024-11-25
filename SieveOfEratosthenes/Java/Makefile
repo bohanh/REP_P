@@ -24,10 +24,10 @@ compile:
 	/usr/bin/javac -d . $(TASK).java
 
 measure:
-	sudo ../../RAPL/main '/usr/bin/javac $(TASK)' Java $(TASK)
+	sudo -S ../../RAPL/main "/usr/bin/java $(TASK)" Java $(TASK)
 
 run:
-	/usr/bin/javac $(TASK)
+	/usr/bin/java $(TASK)
 
 mem:
 	/usr/bin/time -p /usr/bin/javac $(TASK)
