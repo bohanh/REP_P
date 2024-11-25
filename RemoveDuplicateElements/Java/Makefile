@@ -27,7 +27,7 @@ measure:
 	sudo ../../RAPL/main '/usr/bin/javac $(TASK)' Java $(TASK)
 
 run:
-	/usr/bin/javac $(TASK)
+	/usr/bin/java $(TASK)
 
 mem:
 	/usr/bin/time -p /usr/bin/javac $(TASK)
