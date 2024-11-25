@@ -28,6 +28,13 @@ languages = [
 ]
 
 
+def formating(s):
+    ss = s.split("_")
+    for i in range(len(ss)):
+        ss[i] = ss[i][0].capitalize() + ss[i][1:]
+    return ''.join(ss)
+
+
 def file_exists(file_path):
     if not file_path:
         return False
@@ -65,7 +72,7 @@ def main():
         for language in languages:
             print(language.ljust(12), end="")
     for task in tasks:
-        task_path = os.path.join(path, task.replace('_', ''))
+        task_path = os.path.join(path, formating(task))
         if (action == 'compile') | (action == 'run') | (action == 'measure'):
             print("\n" + task.replace("_", " ").ljust(27), end="")
         for language in languages:
@@ -92,7 +99,7 @@ def main():
                         color_print('[OK]'.ljust(12), color='green', end="")
                 if action == 'measure':
                     call(['sleep', '1'])
-    color_print("Action \"" + action + "\" completed", color='green', bold=True)
+    color_print("\nAction \"" + action + "\" completed", color='green', bold=True)
 
 
 if __name__ == '__main__':
