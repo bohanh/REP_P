@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
 
     rapl_init(core);
 
-    fprintf(fp,"Package , CPU , GPU , DRAM? , Time (sec) \n");
+    fprintf(fp,"Package,CPU,GPU,DRAM,Time\n");
 
     for (i = 0; i < ntimes; i++) {
         printf("time time");
