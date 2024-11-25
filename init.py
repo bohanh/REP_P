@@ -35,7 +35,8 @@ source = {
     "time": "/usr/bin/time -p",
     "gcc": "/usr/bin/g++",
     "go": "$(GO)",
-    "java": "/usr/bin/javac",
+    "java": "/usr/bin/java",
+    "javac": "/usr/bin/javac",
     "javascript": "$(NODE)",
     "python": "$(PYTHON)"
 }
@@ -59,7 +60,7 @@ makefiles = {
         "clean": "rm -rf *.go_run"
     },
     "Java": {
-        "compile": f"{source['java']} -d . $(TASK).java",
+        "compile": f"{source['javac']} -d . $(TASK).java",
         "measure": f"sudo ../../RAPL/main '{source['java']} $(TASK)' Java $(TASK)",
         "run": f"{source['java']} $(TASK)",
         "clean": "rm *.class"
