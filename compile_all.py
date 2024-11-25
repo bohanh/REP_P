@@ -7,14 +7,16 @@ from lazyme.string import color_print
 path = '.'
 action = 'compile'
 tasks = [
-    "ABC_Problem",
+    # "ABC_Problem",
     "Caesar_cipher",
-    "Fibonacci_sequence",
-    "Greatest_common_divisor",
-    "Guess_the_number",
-    "Least_common_multiple",
-    "Remove_duplicate_elements",
-    "Sieve_of_Eratosthenes"
+    # "Factorial",
+    # "Factors_of_an_integer",
+    # "Fibonacci_sequence",
+    # "Greatest_common_divisor",
+    # "Guess_the_number",
+    # "Least_common_multiple",
+    # "Remove_duplicate_elements",
+    # "Sieve_of_Eratosthenes"
 ]
 
 
@@ -51,7 +53,7 @@ def compile_rapl():
 
 def main():
     for task in tasks:
-        task_path = os.path.join(path, task)
+        task_path = os.path.join(path, task.replace('_', ''))
         for root, dirs, files in os.walk(task_path):
             print('Checking ' + root)
             makefile = os.path.join(root, "Makefile")
