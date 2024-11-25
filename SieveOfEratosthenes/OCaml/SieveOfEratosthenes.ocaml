@@ -1,0 +1,32 @@
+let sieve n =
+  let is_prime = Array.make n true in
+  let limit = truncate (sqrt (float (n - 1))) in
+  for i = 2 to limit do
+    if is_prime.(i) then
+      let j = ref (i * i) in
+      while !j < n do
+        is_prime.(!j) <- false;
+        j := !j + i;
+      done
+  done;
+  is_prime.(0) <- false;
+  is_prime.(1) <- false;
+  is_prime
+
+let primes n =
+  let sieve_result = sieve n in
+  fst
+    (Array.fold_right
+       (fun is_prime (xs, i) ->
+         if is_prime then (i :: xs, i - 1) else (xs, i - 1))
+       sieve_result
+       ([], Array.length sieve_result - 1))
+
+
+
+
+
+let () =
+  let primes_under_100 = primes 100 in
+  List.iter (fun x -> Printf.printf "%d " x) primes_under_100;
+  print_newline ()

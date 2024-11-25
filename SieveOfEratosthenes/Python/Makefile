@@ -24,7 +24,7 @@ compile:
 	
 
 measure:
-	sudo ../../RAPL/main '$(PYTHON) -OO $(TASK).py' Python $(TASK)
+	sudo -S ../../RAPL/main '$(PYTHON) -OO $(TASK).py' Python $(TASK)
 
 run:
 	$(PYTHON) -OO $(TASK).py
