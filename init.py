@@ -7,7 +7,6 @@ tasks = [
     "Factors_of_an_integer",
     "Fibonacci_sequence",
     "Greatest_common_divisor",
-    "Guess_the_number",
     "Least_common_multiple",
     "Remove_duplicate_elements",
     "Sieve_of_Eratosthenes"
