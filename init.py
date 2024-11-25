@@ -33,11 +33,11 @@ suffix = {
 source = {
     "time": "/usr/bin/time -p",
     "gcc": "/usr/bin/g++",
-    "go": "$(GO)",
+    "go": "go",
     "java": "/usr/bin/java",
     "javac": "/usr/bin/javac",
-    "javascript": "$(NODE)",
-    "python": "$(PYTHON)"
+    "javascript": "node",
+    "python": "python3"
 }
 
 makefiles_const_prefix = {
@@ -108,7 +108,6 @@ def main():
             makefile = os.path.join(task_mod, language, "Makefile")
             code = os.path.join(task_mod, language, f"{task_mod}.{suffix[language]}")
             with open(makefile, "w") as file:
-                file.write(f"ifeq ($(shell uname), Linux)\n\tGO = /usr/local/go/bin/go\n\tNODE = /home/kirito/.nvm/versions/node/v18.16.0/bin/node\n\tPYTHON = /usr/bin/python3\nelse ifeq ($(shell uname), Darwin)\n\tGO = /opt/homebrew/bin/go\n\tNODE = /opt/homebrew/bin/node\n\tPYTHON = /opt/anaconda3/bin/python\nelse\n\tGO = \n\tNODE = \n\tPYTHON = \nendif\n\n")
                 file.write(f"ifndef FILE\n\tFILE={task_mod}.{suffix[language]}\nendif\n\n")
                 file.write(f"ifndef TASK\n\tTASK={task_mod}\nendif\n\n")
                 file.write(f"compile:\n\t{makefiles[language]['compile']}\n\n")

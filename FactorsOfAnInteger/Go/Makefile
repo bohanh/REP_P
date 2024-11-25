@@ -1,17 +1,3 @@
-ifeq ($(shell uname), Linux)
-	GO = /usr/local/go/bin/go
-	NODE = /home/kirito/.nvm/versions/node/v18.16.0/bin/node
-	PYTHON = /usr/bin/python3
-else ifeq ($(shell uname), Darwin)
-	GO = /opt/homebrew/bin/go
-	NODE = /opt/homebrew/bin/node
-	PYTHON = /opt/anaconda3/bin/python
-else
-	GO = 
-	NODE = 
-	PYTHON = 
-endif
-
 ifndef FILE
 	FILE=FactorsOfAnInteger.go
 endif
@@ -21,7 +7,7 @@ ifndef TASK
 endif
 
 compile:
-	$(GO) build -o $(FILE)_run $(FILE)
+	go build -o $(FILE)_run $(FILE)
 
 measure:
 	sudo ../../RAPL/main './$(FILE)_run' Go $(TASK)

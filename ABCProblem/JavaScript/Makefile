@@ -1,17 +1,3 @@
-ifeq ($(shell uname), Linux)
-	GO = /usr/local/go/bin/go
-	NODE = /home/kirito/.nvm/versions/node/v18.16.0/bin/node
-	PYTHON = /usr/bin/python3
-else ifeq ($(shell uname), Darwin)
-	GO = /opt/homebrew/bin/go
-	NODE = /opt/homebrew/bin/node
-	PYTHON = /opt/anaconda3/bin/python
-else
-	GO = 
-	NODE = 
-	PYTHON = 
-endif
-
 ifndef FILE
 	FILE=ABCProblem.js
 endif
@@ -24,19 +10,19 @@ compile:
 	
 
 measure:
-	sudo ../../RAPL/main '$(NODE) $(TASK).js' JavaScript $(TASK)
+	sudo ../../RAPL/main 'node $(TASK).js' JavaScript $(TASK)
 
 run:
-	$(NODE) $(TASK)
+	node $(TASK)
 
 mem:
-	/usr/bin/time -p $(NODE) $(TASK)
+	/usr/bin/time -p node $(TASK)
 
 valgrind:
-	valgrind --tool=massif --stacks=yes $(NODE) $(TASK)
+	valgrind --tool=massif --stacks=yes node $(TASK)
 
 valmem:
-	valgrind --tool=massif --stacks=yes $(NODE) $(TASK)
+	valgrind --tool=massif --stacks=yes node $(TASK)
 
 clean:
 	
