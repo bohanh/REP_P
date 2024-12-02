@@ -6,8 +6,11 @@ on:
       - main  # Run on pushes to the main branch
 
 jobs:
-  analyze:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
     - name: Checkout repository
@@ -24,7 +27,7 @@ jobs:
         pip install pandas matplotlib
 
     - name: Run data analysis
-      run: python analyze_data.py
+      run: python3 ./analyse_data.py
 
     - name: Commit and push results
       run: |
