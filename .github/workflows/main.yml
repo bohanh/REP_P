@@ -27,7 +27,7 @@ jobs:
         pip install pandas matplotlib
 
     - name: Run data analysis
-      run: python3 analyze_data.py
+      run: python3 ./analyze_data.py
 
     - name: Commit and push results
       run: |
