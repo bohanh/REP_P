@@ -6,8 +6,11 @@ on:
       - main  # Run on pushes to the main branch
 
 jobs:
-  analyze:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
     - name: Checkout repository
