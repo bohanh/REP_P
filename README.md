@@ -1,6 +1,6 @@
 # Energy Efficiency in Programming Languages
 ## Introduction
-
+The project aims to analyse the energy efficiency of different programming languages by using codes from [Rosetta Code](https://rosettacode.org/wiki/Rosetta_Code) and analyse the energy consumption of CPU, GPU, and DRAM, as well as runtime.
 ## Reproducibility
 ### How to Reproduce the Results
 #### **1. Requirements**
@@ -10,31 +10,36 @@ The Docker environment will be set up in Ubuntu.
   - Linux
     - C++ : GCC 11.4.0
     - Go : go 1.18.1
-    - Java : OpenJDK 21.0.5
-    - Javac : javac 21.0.5
+    - Java : OpenJDK 21
+    - Javac : javac 21
     - JavaScript : node 18.16.0
     - OCaml : ocamlopt 4.13.1
     - Python : python3 3.10.12
 #### **2. Setting Up the Environment**  
-   - Provide instructions for using the Dockerfile to create a reproducible environment:  
-     ```bash
-     FROM ubuntu:22.04
-     ENV DEBIAN_FRONTEND=noninteractive
-     
-     RUN apt-get update && apt-get install -y gcc-11 g++-11 && update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 100
-     
-
-     docker build -t reproducible-project .
-     docker run -it reproducible-project
-     ```
+- Use the following instructions to create a reproducible environment with Dockerfile:  
+    ```bash
+    docker build -t reproducible-project .
+    docker run -it reproducible-project
+    ```
+- For non x86-64 (AMD) architecture, run instead:
+  ```bash
+  docker build --platform linux/amd64 -t ubuntu-dev-environment .
+  docker run -it reproducible-project
+  ```
 
 #### **3. Reproducing Results**  
-   - Describe how to run the automated scripts or notebooks to reproduce data and analyze results:
+   - To generate the necessary csv files contain the results, run:
      ```bash
-     bash scripts/run_analysis.sh
+     python3 compile_all.py compile
+     python3 compile_all.py measure
+     python3 compile_all.py clean
+     
+     python3 analyse.py
      ```
-   - Mention Jupyter notebooks (if applicable):  
-     Open `notebooks/reproduce_results.ipynb` to execute the analysis step-by-step.
+   - To analyse the results, run:
+     ```bash
+     python3 analyse_data.py
+     ```
 
 #### **4. Automation (Bonus)**  
    - Explain the included GitHub Action that produces or analyzes data automatically.  
