@@ -42,7 +42,8 @@ The Docker environment will be set up in Ubuntu.
      ```
 
 #### **4. Automation (Bonus)**  
-   - Explain the included GitHub Action that produces or analyzes data automatically.  
+   - Github workflow will execute analyse_data.py script automatically,which will produce the summary of efficiency of each language we used in all the cases.
+   - Produce a graph of each case in folder "output_graphs"
     
 ### Encountered Issues and Improvements
 - Report any challenges, errors, or deviations from the original study.
@@ -52,13 +53,12 @@ The Docker environment will be set up in Ubuntu.
 
 ## Replicability
 ### Variability Factors
-- **List of Factors**: Identify all potential sources of variability (e.g., dataset splits, random seeds, hardware).  
-  Example table:
+- **List of Factors**:
   | Variability Factor | Possible Values     | Relevance                                   |
   |--------------------|---------------------|--------------------------------------------|
-  | Random Seed        | [0, 42, 123]       | Impacts consistency of random processes    |
-  | Hardware           | CPU, GPU (NVIDIA)  | May affect computation time and results    |
-  | Dataset Version    | v1.0, v1.1         | Ensures comparability across experiments   |
+  | Hardware           | CPU, GPU (NVIDIA)  | Different computation time and results  |
+  | Architect          | DRAM,CPU-only machine| The energy consumed is certainly different|
+- | Operating system   | linux,windows       |Different system have different results |
 
 - **Constraints Across Factors**:  
   - Document any constraints or interdependencies among variability factors.  
