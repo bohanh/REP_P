@@ -116,5 +116,6 @@ if __name__ == '__main__':
     else:
         color_print('Performing \"compile\" action...', color='yellow', bold=True)
         action = 'compile'
+        compile_rapl()
 
     main()
