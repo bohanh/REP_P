@@ -66,13 +66,18 @@ The Docker environment will be set up in Ubuntu.
 #### **1. Instructions**  
    We have encountered several compile errors when using the original code.The original project framework will execute all the 
 fisher in folder and conserve these who can run successfully. We have modified the framework adding task attributes to 
-adjust the task we want to execute in case of replication.
+adjust the task we want to execute in case of replication. 
+A notebook file to run paper replication
+   replicate/result.ipynb
 
 #### **2. Presentation and Analysis of Results**  
-   
+   We have output all the experiment data to the folder replicate for 7 tasks we have chosen. The graph illustrate the data 
+comparison.Time-o and cpu-o stands for the original data in the paper.
 
 ### Does It Confirm the Original Study?
-- We have obtained different energy consumation from the original study, especially in GO
+-We have obtained a non consistency difference in different case. In general, the algo using go and javascript takes 
+much shorter time and less energy in our machine.c++ and java shows confirm the original study in all the cases. Ocaml and 
+python has a same results as original study in most tasks. 
 
 ## Conclusion
-- 
+
