@@ -60,38 +60,19 @@ The Docker environment will be set up in Ubuntu.
   | Architect          | DRAM,CPU-only machine| The energy consumed is certainly different|
 - | Operating system   | linux,windows       |Different system have different results |
 
-- **Constraints Across Factors**:  
-  - Document any constraints or interdependencies among variability factors.  
-    For example:
-    - Random Seed must align with dataset splits for consistent results.
-    - Hardware constraints may limit the choice of GPU-based factors.
-
-- **Exploring Variability Factors via CLI (Bonus)**  
-   - Provide instructions to use the command-line interface (CLI) to explore variability factors and their combinations:  
-     ```bash
-     python explore_variability.py --random-seed 42 --hardware GPU --dataset-version v1.1
-     ```
-   - Describe the functionality and parameters of the CLI:
-     - `--random-seed`: Specify the random seed to use.
-     - `--hardware`: Choose between CPU or GPU.
-     - `--dataset-version`: Select the dataset version.
 
 
 ### Replication Execution
 #### **1. Instructions**  
-   - Provide detailed steps or commands for running the replication(s):  
-     ```bash
-     bash scripts/replicate_experiment.sh
-     ```
+   We have encountered several compile errors when using the original code.The original project framework will execute all the 
+fisher in folder and conserve these who can run successfully. We have modified the framework adding task attributes to 
+adjust the task we want to execute in case of replication.
 
 #### **2. Presentation and Analysis of Results**  
-   - Include results in text, tables, or figures.
-   - Analyze and compare with the original study's findings.
+   
 
 ### Does It Confirm the Original Study?
-- Summarize the extent to which the replication supports the original study’s conclusions.
-- Highlight similarities and differences, if any.
+- We have obtained different energy consumation from the original study, especially in GO
 
 ## Conclusion
-- Recap findings from the reproducibility and replicability sections.
-- Discuss limitations of your
+- 
