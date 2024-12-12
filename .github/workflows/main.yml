@@ -1,48 +1,49 @@
-name: Analyze Data
+name: Compile and Test Analyse Data
 
 on:
   push:
     branches:
-      - main  # Run on pushes to the main branch
+      - main
+    paths:
+      - '**.py'
+      - 'Dockerfile'
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x"
+          python-version: '3.10'
 
-      - name: Install dependencies
+      - name: Set up Docker
         run: |
-          python -m pip install --upgrade pip
-          pip install pandas matplotlib
-          pip install lazyme
+          sudo apt-get update && sudo apt-get install -y docker.io
 
-      - name: Run project
+      - name: Build Docker Environment
         run: |
-          python3 compile_all.py compile
-          python3 compile_all.py measure
-          python3 compile_all.py clean
-          python3 analyse.py
+          docker build -t reproducible-project .
 
-      - name: Run data analysis
-        run: python3 ./analyse_data.py
-
-      - name: Commit and push results
+      - name: Run Docker Container
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add output_graphs/*
-          git commit -m "Add updated data analysis results"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          docker run --name test-container -dit reproducible-project
+
+      - name: Compile and Measure Results
+        run: |
+          docker exec test-container python3 compile_all.py compile
+          docker exec test-container python3 compile_all.py measure
+          docker exec test-container python3 compile_all.py clean
+
+      - name: Analyse Data
+        run: |
+          docker exec test-container python3 analyse_data.py
+
+      - name: Cleanup
+        run: |
+          docker stop test-container
+          docker rm test-container
