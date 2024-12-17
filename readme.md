@@ -53,7 +53,9 @@ The Docker environment will be set up in Ubuntu.
 - Requiring a dedicative GPU for the hardware, the ```GPU and DRAM``` columns are empty in our results.
 
 ### Is the Original Study Reproducible?
-
+After recoding or modifying ```compile_all.py```, ```analyse.py```, ```analyse_data.py```, and some other files, we were able to run the project on some tasks that we have chosen. 
+Despite some visible differences in the results for specific languages, the results from our reproduced study are mostly coherent with the original study. 
+We therefore believe that the original study is reproducible.
 
 ## Replicability
 ## Replicability
@@ -63,7 +65,7 @@ The Docker environment will be set up in Ubuntu.
   |--------------------|---------------------|--------------------------------------------|
   | Hardware           | CPU, GPU (NVIDIA)  | Different computation time and results  |
   | Architect          | DRAM,CPU-only machine| The energy consumed is certainly different|
-- | Operating system   | linux,windows       |Different system have different results |
+  | Operating system   | linux,windows       |Different system have different results |
 ### Replication Execution
 #### **1. Instructions**  
    We have encountered several compile errors when using the original code.The original project framework will execute all the 
@@ -75,7 +77,7 @@ A notebook file to run paper replication
    We have output all the experiment data to the folder replicate for 7 tasks we have chosen. The graph illustrate the data 
 comparison.Time-o and cpu-o stands for the original data in the paper.
 ### Does It Confirm the Original Study?
--We have obtained a non consistency difference in different case. In general, the algo using go and javascript takes 
+We have obtained a non consistency difference in different case. In general, the algo using go and javascript takes 
 much shorter time and less energy in our machine.c++ and java shows confirm the original study in all the cases. Ocaml and 
 python has a same results as original study in most tasks. 
 
